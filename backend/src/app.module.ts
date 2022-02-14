@@ -16,8 +16,8 @@ import { VideoModule } from './video/video.module';
 
 @Module({
   imports: [UserModule,
-    MongooseModule.forRoot('mongodb://localhost/taekwondo'),
-    // MongooseModule.forRoot('mongodb+srv://minhhoangzeno:Dalecarnegie@cluster0.lgkmn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    // MongooseModule.forRoot('mongodb://localhost/taekwondo'),
+    MongooseModule.forRoot('mongodb+srv://minhhoangzeno:Dalecarnegie@cluster0.lgkmn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
     AuthModule,
     BlogModule,
     CategoryVideoModule,
