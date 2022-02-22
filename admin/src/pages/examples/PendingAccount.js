@@ -28,7 +28,7 @@ export default () => {
                                     thực hiện theo hướng dẫn.
                                 </p>
                                 <Button variant="primary" className="animate-hover" >
-                                    <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" >
+                                    <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" rel="noopener noreferrer" >
                                         <span style={{ color: '#fff' }} >Open Mail</span>
                                     </a>
                                 </Button>

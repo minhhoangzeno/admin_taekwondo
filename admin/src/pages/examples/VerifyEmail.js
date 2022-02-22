@@ -3,8 +3,8 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Col, Container, Image, Row } from '@themesberg/react-bootstrap';
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 import ErrorImage from "../../assets/img/illustrations/bs5-illustrations.svg";
 import { verifyEmailThunk } from "../../redux/authSlice";
 import { Routes } from "../../routes";
@@ -24,8 +24,8 @@ export default (props) => {
     }
   }
   useEffect(() => {
-    searchVerifyEmail()
-  }, [])
+    searchVerifyEmail() 
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <>
       {checkVerify ? <main>

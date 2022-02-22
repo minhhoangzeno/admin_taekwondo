@@ -4,20 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card, Col, Container, Form, InputGroup, Row } from '@themesberg/react-bootstrap';
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-import { verifyPasswordThunk } from "../../redux/loginSlice";
 import { Routes } from "../../routes";
 
 
 
 export default (props) => {
     const { control, handleSubmit, reset } = useForm();
-    let { confirmationCode } = props.match.params;
-    console.log(confirmationCode)
-    let dispatch = useDispatch();
+    // let { confirmationCode } = props.match.params;
+    // let dispatch = useDispatch();
     let verifyPassword = async (form) => {
-        dispatch(verifyPasswordThunk(confirmationCode, form.newPassword))
+        // dispatch(verifyPasswordThunk(confirmationCode, form.newPassword))
         reset()
     }
     return (

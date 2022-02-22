@@ -170,5 +170,6 @@ export const GeneralInfoForm = () => {
         </Form>
       </Card.Body>
     </Card>
+  
   );
 };

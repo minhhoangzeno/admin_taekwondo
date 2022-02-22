@@ -1,4 +1,4 @@
-import { publicGetApi, publicPostApi } from '../apis/API';
+import { privatePostApi, privatePostFileApi, publicGetApi, publicPostApi } from '../apis/API';
 
 export const login = async (username, password) => {
     const data = {
@@ -8,8 +8,6 @@ export const login = async (username, password) => {
     let response = await publicPostApi('/auth/login', data)
     return response
 };
-
-
 
 export const siginup = async (userDto) => {
     let response = await publicPostApi('/user/register', userDto)
@@ -45,3 +43,16 @@ export const checkBeforeResetPassword = async (confirmationCode) => {
     }
 }
 
+export const updateProfile = async (data) => {
+    try {
+        let response = await privatePostFileApi(`/user/update`,data);
+        return response;
+    } catch (error) {
+        
+    }
+}
+
+export const changePassword = async (data) => {
+    let response = await privatePostApi('/user/change-password', data)
+    return response
+}

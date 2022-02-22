@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, siginup, verifyEmail, forgotPassword, resetPassword, checkBeforeResetPassword } from '../services/auth.service';
-import { changePassword } from '../services/login.services';
+import { changePassword, checkBeforeResetPassword, forgotPassword, login, resetPassword, siginup, updateProfile, verifyEmail } from '../services/auth.service';
 import { updateProgress } from './progressSlice';
 
 const initialState = {
@@ -14,7 +13,7 @@ export const authSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             localStorage.setItem("token", JSON.stringify(action.payload.access_token))
-            state.data = action.payload.user;
+            localStorage.setItem("user", JSON.stringify(action.payload.user))
             state.error = null;
         },
         setError: (state, action) => {
@@ -32,11 +31,7 @@ export const loginThunk = (username, password) => async (dispatch) => {
     dispatch(updateProgress(0))
     try {
         const data = await login(username, password);
-        if (data.statusCode == 201) {
-            dispatch(setError(data))
-        } else {
-            dispatch(setUser(data))
-        }
+        return data;
     } catch (err) {
         dispatch(setError(err))
     }
@@ -118,6 +113,31 @@ export const checkBeforePasswordThunk = (confirmationCode) => async (dispatch) =
         }
     } catch (err) {
         console.log("err", err)
+    }
+    //done
+    dispatch(updateProgress(100))
+}
+
+
+export const updateProfileThunk = (dto) => async (dispatch) => {
+    dispatch(updateProgress(0))
+    try {
+        const data = await updateProfile(dto);
+        return data;
+    } catch (err) {
+        console.log("err", err)
+    }
+    //done
+    dispatch(updateProgress(100))
+}
+
+export const changePasswordThunk = (dto) => async (dispatch) => {
+    dispatch(updateProgress(0))
+    try {
+        const data = await changePassword(dto);
+        return data;
+    } catch (err) {
+        dispatch(setError(err))
     }
     //done
     dispatch(updateProgress(100))

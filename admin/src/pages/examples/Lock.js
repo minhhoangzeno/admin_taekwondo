@@ -1,15 +1,15 @@
 
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEye, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
-import { Col, Row, Form, Card, Image, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Card, Col, Container, Form, Image, InputGroup, Row } from '@themesberg/react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-
-import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 import Profile3 from "../../assets/img/team/profile-picture-3.jpg";
-import { useDispatch, useSelector } from "react-redux";
 import { getBlogThunk } from "../../redux/blogSlice";
+import { Routes } from "../../routes";
+
 
 export default () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,13 +19,11 @@ export default () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const blogRedux = useSelector(state => state.blog.data)
-  console.log("blogRedux", blogRedux)
   let dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBlogThunk())
-  }, [])
+    dispatch(getBlogThunk()) // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) 
   return (
     <main>
       <section className="vh-lg-100 bg-soft d-flex align-items-center my-4">

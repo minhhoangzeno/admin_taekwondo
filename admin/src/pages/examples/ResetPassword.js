@@ -27,7 +27,7 @@ export default (props) => {
     }
   }
   useEffect(() => {
-    searchCheckBeforeResetPassword()
+    searchCheckBeforeResetPassword() // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   let history = useHistory()
   let { addToast } = useToasts()

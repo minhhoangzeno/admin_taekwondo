@@ -3,34 +3,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Card, Col, Container, Form, InputGroup, Row } from '@themesberg/react-bootstrap';
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from 'react-router-dom';
 import { useToasts } from "react-toast-notifications";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 import { loginThunk } from "../../redux/authSlice";
 import { Routes } from "../../routes";
-const ProgressBar = require('react-progress-bar-plus');
 export default () => {
   let dispatch = useDispatch();
   let history = useHistory();
   const { control, handleSubmit, formState: { errors } } = useForm();
   let { addToast } = useToasts()
 
-  let auth = useSelector(state => state.auth);
-  let progress = useSelector(state => state.progress.value)
   let signin = async (form) => {
-    dispatch(loginThunk(form.username, form.password));
-    if (auth.error) {
-      addToast(auth.error.message, { appearance: 'error', autoDismiss: 2000 })
-    } else if (auth.data) {
+    let data = await dispatch(loginThunk(form.username, form.password));
+    if (data.statusCode === 201) {
+      addToast(data.message, { appearance: 'error', autoDismiss: 2000 });
+
+    } else {
+      localStorage.setItem("token", JSON.stringify(data.access_token))
+      localStorage.setItem("user", JSON.stringify(data.user))
       addToast("Success", { appearance: 'success', autoDismiss: 2000 })
       history.push(Routes.DashboardOverview.path)
     }
+
   }
 
   return (
     <>
-      <ProgressBar percent={progress} />
       <main>
         <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
           <Container>
@@ -86,7 +86,7 @@ export default () => {
                         />
                       </Form.Group>
                     </Form.Group>
-                    <div className="d-flex align-items-center mt-2 mb-4" style={{justifyContent:'flex-end'}} >
+                    <div className="d-flex align-items-center mt-2 mb-4" style={{ justifyContent: 'flex-end' }} >
                       <span className="fw-normal">
                         <Card.Link as={Link} to={Routes.ForgotPassword.path} className="fw-bold text-blue">
                           {` Forgot Password `}

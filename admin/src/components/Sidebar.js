@@ -95,7 +95,7 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Taekwondo"  image={ReactHero} />
+              {/* <NavItem title="Taekwondo" link={Routes} image={ReactHero} /> */}
 
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />

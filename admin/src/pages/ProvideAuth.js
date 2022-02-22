@@ -27,7 +27,8 @@ import Tooltips from "./components/Tooltips";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import BootstrapTables from "./tables/BootstrapTables";
 import Transactions from "./Transactions";
-
+import Settings from './Settings';
+import ChangePassword from "./examples/ChangePassword";
 
 
 const RouteWithSidebar = ({ component: Component, ...rest }) => {
@@ -94,8 +95,8 @@ export default function ProvideAuth() {
             <RouteWithSidebar exact path={Routes.Tabs.path} component={Tabs} />
             <RouteWithSidebar exact path={Routes.Tooltips.path} component={Tooltips} />
             <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} />
-
-
+            <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
+            <RouteWithSidebar exact path={Routes.ChangePassword.path} component={ChangePassword} />
             {/* components */}
 
 

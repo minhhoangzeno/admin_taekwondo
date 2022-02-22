@@ -15,7 +15,7 @@ const ProgressBar = require('react-progress-bar-plus');
 
 
 export default () => {
-  const { control, handleSubmit, reset, formState: { errors } } = useForm();
+  const { control, handleSubmit, formState: { errors } } = useForm();
   let { addToast } = useToasts()
   const [checkbox, setCheckbox] = useState(false)
   let dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default () => {
       }
       let { confirmPassword, ...other } = form;
       let data = await dispatch(signupThunk(other));
-      if (data?.statusCode == 201) {
+      if (data?.statusCode === 201) {
         addToast(data.message, { appearance: 'error' })
       } else {
         addToast("Đăng ký thành công", { appearance: 'success', autoDismiss: 2000 })
